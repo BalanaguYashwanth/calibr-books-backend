@@ -1,10 +1,21 @@
 # calibr-books-backend
 
+
+| Prerequisite  | Version|
+| ------------- | ------------- |
+| Node  | Latest  |
+| NPM  | Latest |
+| Elastic Cloud  | Latest |
+| MongoDB Community Server  | Latest |
+
+
+
 ## Getting Started To Run 🚀
 
 ```bash
 npm i
-load elastic cloud and mongodb config parameters in .env
+load .env from sample.env
+Configure other servers in .env
 npm run dev
 ```
 
