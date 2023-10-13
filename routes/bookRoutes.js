@@ -48,7 +48,7 @@ router.get("/", retriveAllBooks);
  * @openapi
  * '/api/books/:id':
  *  get:
- *     summary: Fetches specific book ID
+ *     summary: Fetches specific book by ID
  *     responses:
  *       200:
  *         description: Success
