@@ -18,31 +18,32 @@ const router = express.Router();
  *       200:
  *         description: Success
  *         content:
- *          application/json:
- *            schema:
- *                type: object
- *                properties:
- *                  _id: 
- *                    type: string
- *                  title: 
- *                    type: string
- *                  author:  
- *                    type: string
- *                  publicationYear:  
- *                    type: number
- *                  isbn: 
- *                    type: string
- *                  description: 
- *                    type: string
- *                  createdAt: 
- *                    type: string
- *                  updatedAt:
- *                    type: string
- *                  __v: 
- *                    type: number
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                   title:
+ *                     type: string
+ *                   author:
+ *                     type: string
+ *                   publicationYear:
+ *                     type: number
+ *                   isbn:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   createdAt:
+ *                     type: string
+ *                   updatedAt:
+ *                     type: string
+ *                   __v:
+ *                     type: number
  */
 router.get("/", retriveAllBooks);
-
 
 /**
  * @openapi
@@ -57,27 +58,26 @@ router.get("/", retriveAllBooks);
  *            schema:
  *                type: object
  *                properties:
- *                  _id: 
+ *                  _id:
  *                    type: string
- *                  title: 
+ *                  title:
  *                    type: string
- *                  author:  
+ *                  author:
  *                    type: string
- *                  publicationYear:  
+ *                  publicationYear:
  *                    type: number
- *                  isbn: 
+ *                  isbn:
  *                    type: string
- *                  description: 
+ *                  description:
  *                    type: string
- *                  createdAt: 
+ *                  createdAt:
  *                    type: string
  *                  updatedAt:
  *                    type: string
- *                  __v: 
+ *                  __v:
  *                    type: number
  */
 router.get("/:id", retriveBookByID);
-
 
 /**
  * @openapi
@@ -97,15 +97,15 @@ router.get("/:id", retriveBookByID);
  *              - isbn
  *              - description
  *            properties:
- *              title:  
+ *              title:
  *                 type: string
- *              author: 
+ *              author:
  *                 type: string
- *              publicationYear: 
+ *              publicationYear:
  *                 type: number
- *              isbn: 
+ *              isbn:
  *                 type: string
- *              description: 
+ *              description:
  *                 type: string
  *     responses:
  *       200:
@@ -115,30 +115,27 @@ router.get("/:id", retriveBookByID);
  *            schema:
  *                type: object
  *                properties:
- *                  _id: 
+ *                  _id:
  *                    type: string
- *                  title: 
+ *                  title:
  *                    type: string
- *                  author:  
+ *                  author:
  *                    type: string
- *                  publicationYear:  
+ *                  publicationYear:
  *                    type: number
- *                  isbn: 
+ *                  isbn:
  *                    type: string
- *                  description: 
+ *                  description:
  *                    type: string
- *                  createdAt: 
+ *                  createdAt:
  *                    type: string
  *                  updatedAt:
  *                    type: string
- *                  __v: 
+ *                  __v:
  *                    type: number
  */
 
-
 router.post("/", createBook);
-
-
 
 /**
  * @openapi
@@ -154,38 +151,38 @@ router.post("/", createBook);
  *            required:
  *              - contents
  *            properties:
- *              contents: 
+ *              contents:
  *                 type: string
  *     responses:
  *       200:
  *         description: Success
  *         content:
- *          application/json:
- *            schema:
- *                type: object
- *                properties:
- *                  _id: 
- *                    type: string
- *                  title: 
- *                    type: string
- *                  author:  
- *                    type: string
- *                  publicationYear:  
- *                    type: number
- *                  isbn: 
- *                    type: string
- *                  description: 
- *                    type: string
- *                  createdAt: 
- *                    type: string
- *                  updatedAt:
- *                    type: string
- *                  __v: 
- *                    type: number
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                   title:
+ *                     type: string
+ *                   author:
+ *                     type: string
+ *                   publicationYear:
+ *                     type: number
+ *                   isbn:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   createdAt:
+ *                     type: string
+ *                   updatedAt:
+ *                     type: string
+ *                   __v:
+ *                     type: number
  */
-
 router.post("/search", searchAPI);
-
 
 /**
  * @openapi
@@ -201,9 +198,9 @@ router.post("/search", searchAPI);
  *            required:
  *              - contents
  *            properties:
- *              contents: 
- *                 type: string
- * 
+ *              contents:
+ *                 type: object
+ *
  *     responses:
  *       200:
  *         description: Success
@@ -212,20 +209,19 @@ router.post("/search", searchAPI);
  *            schema:
  *                type: object
  *                properties:
- *                  acknowledged: 
+ *                  acknowledged:
  *                    type: boolean
- *                  title: 
+ *                  title:
  *                    type: string
- *                  modifiedCount:  
+ *                  modifiedCount:
  *                    type: number
- *                  upsertedId:  
+ *                  upsertedId:
  *                    type: string
- *                  upsertedCount: 
+ *                  upsertedCount:
  *                    type: number
- *                  matchedCount: 
+ *                  matchedCount:
  *                    type: number
  */
-
 
 router.put("/:id", updateBookByID);
 
@@ -242,7 +238,7 @@ router.put("/:id", updateBookByID);
  *            schema:
  *                type: object
  *                properties:
- *                  message: 
+ *                  message:
  *                    type: string
  */
 
