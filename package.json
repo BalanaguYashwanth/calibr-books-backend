@@ -19,6 +19,8 @@
     "express-async-handler": "^1.2.0",
     "mongoosastic": "^5.0.0",
     "mongoose": "^7.6.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   }
 }
