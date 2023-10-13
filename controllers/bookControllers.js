@@ -1,13 +1,28 @@
 const asyncHandler = require("express-async-handler");
 const Books = require("../models/bookModels");
 const connectElastic = require("../config/elasticConnection");
-const {createIndex,updateIndex, deleteIndex} = require("./ElasticControllers");
+const {
+  createIndex,
+  updateIndex,
+  deleteIndex,
+} = require("./ElasticControllers");
 const { BOOKS_MODEL } = require("../contants");
 
-const retriveAllBooks = asyncHandler(async (req, res) => {
-  const books = await Books.find();
-  res.status(200).json(books);
-});
+const retriveAllBooks = async (req, res) => {
+  try{
+    const { skip, limit } = req.query;
+    let books;
+    if (skip || limit) {
+      books = await Books.find().skip(skip).limit(limit);
+    } else {
+      books = await Books.find();
+    }
+    const length = await Books.find({}).count()
+    res.status(200).json({ response: books, count:length });
+  }catch(error){
+    res.status(500).json({ error:error||'something went wrong' });
+  }
+};
 
 const retriveBookByID = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -55,27 +70,23 @@ const createBook = async (req, res) => {
     });
     res.status(201).json(books);
   } catch (error) {
-    console.log("error==", error);
-    res.status(201).json({ error: "something went wrong" });
+    res.status(500).json({ error:error||'something went wrong' });
   }
 };
 
 const updateBookByID = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const contents = req.body;
-  const updatedBook = await Books.updateOne(
-    { _id: id },
-    { $set: contents }
-  );
-  await updateIndex({id,contents})
+  const updatedBook = await Books.updateOne({ _id: id }, { $set: contents });
+  await updateIndex({ id, contents });
   res.status(200).json(updatedBook);
 });
 
 const deleteBookByID = asyncHandler(async (req, res) => {
   const { id } = req.params;
   await Books.deleteOne({ _id: id });
-  await deleteIndex({id})
-  res.status(200).json({ message: `deleted successfully id - ${id}` });
+  await deleteIndex({ id });
+  res.status(200).json({ response: `deleted successfully id - ${id}` });
 });
 
 module.exports = {
