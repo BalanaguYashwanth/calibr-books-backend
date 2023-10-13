@@ -24,6 +24,7 @@ const searchAPI = asyncHandler(async (req, res) => {
       query: {
         multi_match: {
           query: contents,
+          operator: "and",
           fields: ["title", "author", "description"],
         },
       },
