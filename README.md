@@ -36,7 +36,7 @@ Open [http://localhost:5000](http://localhost:5000) with your browser to see the
 - Click on drivers and COPY the link
 - Add that link inside .env and add password
 
-## Elastic Cloud
+## Elastic Cloud setup
 
 - Create an elastic account
 - Create a deployment
